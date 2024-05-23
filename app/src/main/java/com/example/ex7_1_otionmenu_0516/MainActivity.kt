@@ -4,18 +4,24 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity() {
     lateinit var linear : LinearLayout
-    lateinit var btn : Button
+    lateinit var editDeqree : EditText
+    lateinit var imgv : ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         linear = findViewById(R.id.linear)
-        btn = findViewById(R.id.btn)
+        editDeqree = findViewById<EditText>(R.id.editDegree)
+        imgv = findViewById<ImageView>(R.id.imgv)
 
     }
     // 옵션메뉴 등록
@@ -27,31 +33,31 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.itemRed ->{
-                linear.setBackgroundColor(Color.RED)
+
+            R.id.itemRotate ->{
+                imgv.rotation += editDeqree.text.toString().toFloat()
                 return true
             }
-            R.id.itemGreen ->{
-                linear.setBackgroundColor(Color.GREEN)
+            R.id.itemimg1 ->{
+                imgv.setImageResource(R.drawable.img1)
+                item.setChecked(true)
                 return true
             }
-            R.id.itemBlue ->{
-                linear.setBackgroundColor(Color.BLUE)
+            R.id.itemimg2 ->{
+                imgv.setImageResource(R.drawable.img2)
+                item.setChecked(true)
                 return true
             }
-            R.id.btnRotate ->{
-                btn.rotation = 60f
-                return true
-            }
-            R.id.btnZoonin ->{
-                btn.scaleX = 2f
+            R.id.itemimg3 ->{
+                imgv.setImageResource(R.drawable.img3)
+                item.setChecked(true)
                 return true
             }
         }
 
         return false
     }
-}
+
+    }
